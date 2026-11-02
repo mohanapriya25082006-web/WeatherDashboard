@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A responsive live weather dashboard powered by the Open-Meteo API.">
+  <title>Weatherly | Live Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Weatherly home">
+        <span class="brand-icon" aria-hidden="true">☀</span>
+        <span>weatherly<span class="brand-dot">.</span></span>
+      </a>
+      <div class="topbar-note"><span class="live-dot"></span> LIVE WEATHER</div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR WEATHER, AT A GLANCE</p>
+      <h1>Every day, <span>in focus.</span></h1>
+      <p class="intro-copy">Search for a city to see current conditions and the upcoming forecast.</p>
+    </section>
+
+    <form class="search-form" id="searchForm">
+      <label class="sr-only" for="cityInput">Enter a city name</label>
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input id="cityInput" type="text" placeholder="Search city (e.g. Mumbai, London)" autocomplete="off" required>
+      <button id="searchButton" type="submit">Search <span aria-hidden="true">→</span></button>
+    </form>
+
+    <p id="statusMessage" class="status-message" role="status" aria-live="polite">Enter a city to get started.</p>
+
+    <section id="weatherContent" class="weather-content" hidden>
+      <div class="location-row">
+        <div>
+          <p class="section-kicker">CURRENT WEATHER</p>
+          <h2 id="locationName">—</h2>
+          <p id="currentDate" class="muted">—</p>
+        </div>
+        <div class="timezone-pill" id="timezoneLabel">Local time</div>
+      </div>
+
+      <section class="hero-card" aria-label="Current weather">
+        <div class="hero-main">
+          <div>
+            <p class="hero-label">RIGHT NOW</p>
+            <div class="temperature"><span id="temperature">--</span><span class="degree">°</span></div>
+            <p id="weatherDescription" class="weather-description">—</p>
+            <p class="feels-like">Feels like <strong id="feelsLike">--°</strong></p>
+          </div>
+          <div class="weather-art" id="weatherIcon" aria-hidden="true">☀️</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-bottom">
+          <span>Updated from the latest available model data</span>
+          <span id="dayNightLabel">—</span>
+        </div>
+      </section>
+
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">WEATHER DETAILS</p>
+          <h3>Today's conditions</h3>
+        </div>
+      </div>
+      <section class="metrics-grid" aria-label="Weather details">
+        <article class="metric-card">
+          <div class="metric-top"><span class="metric-icon">💧</span><span class="metric-label">HUMIDITY</span></div>
+          <p class="metric-value"><span id="humidity">--</span><small>%</small></p>
+          <p class="metric-foot">Relative humidity</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span class="metric-icon">💨</span><span class="metric-label">WIND SPEED</span></div>
+          <p class="metric-value"><span id="windSpeed">--</span><small> km/h</small></p>
+          <p class="metric-foot">At 10 metres</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span class="metric-icon">🌧️</span><span class="metric-label">PRECIPITATION</span></div>
+          <p class="metric-value"><span id="precipitation">--</span><small> mm</small></p>
+          <p class="metric-foot">Recent precipitation</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span class="metric-icon">🧭</span><span class="metric-label">WIND DIRECTION</span></div>
+          <p class="metric-value"><span id="windDirection">--</span><small>°</small></p>
+          <p class="metric-foot">Direction wind is coming from</p>
+        </article>
+      </section>
+
+      <div class="section-heading forecast-heading">
+        <div>
+          <p class="section-kicker">PLAN AHEAD</p>
+          <h3>5-day forecast</h3>
+        </div>
+        <span class="forecast-caption">Daily outlook</span>
+      </div>
+      <section id="forecastGrid" class="forecast-grid" aria-label="Five day weather forecast"></section>
+
+      <p class="data-note">Weather information provided by Open-Meteo. Forecasts are model-based and may change.</p>
+    </section>
+
+    <footer class="footer">
+      <span>Made with <span class="heart">♥</span> and JavaScript</span>
+      <span>Powered by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></span>
+    </footer>
+  </main>
+</body>
+</html>
